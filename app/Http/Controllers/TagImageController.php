@@ -38,13 +38,19 @@ class TagImageController extends Controller
 
     public function store(TagImageRequest $request)
     {
-        $item = new TagImage();
-        $msg = trans('messages.added');
 
-        $item->TagImage = $request->TagImage;
-        $item->Sigla = $request->Sigla;
+        $item = TagImage::where($request->Tag)
+            ->where($request->Image)
+            ->first();
+        if (!isset($item)) {
 
-        $item->save();
+            $item = new TagImage();
+            $msg = trans('messages.added');
+            $item->Tag = $request->Tag;
+            $item->Image = $request->Image;
+
+            $item->save();
+        }
 
         $result = array(
             'success' => true,
