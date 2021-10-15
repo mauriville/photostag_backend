@@ -13,7 +13,7 @@ class ImageController extends Controller
     //
     public function index()
     {
-        $item = Image::select('id', 'Title', 'ImageUrl', 'ThumbnailUrl')->whereNull('deleted_at');
+        $item = Image::select('id', 'Tittle', 'ImageUrl', 'ThumbnailUrl')->whereNull('deleted_at');
 
         return Datatables::of($item)
             ->addIndexColumn()
