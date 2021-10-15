@@ -39,8 +39,8 @@ class TagImageController extends Controller
     public function store(TagImageRequest $request)
     {
 
-        $item = TagImage::where($request->Tag)
-            ->where($request->Image)
+        $item = TagImage::where('Tag',$request->Tag)
+            ->where('Image',$request->Image)
             ->first();
         if (!isset($item)) {
 
