@@ -94,4 +94,27 @@ class TagController extends Controller
 
         return response()->json($result);
     }
+
+    public function select2(Request $request)
+    {
+        $term = trim($request->q);
+
+        if (empty($term)) {
+            return response()->json([]);
+        }
+
+        $items = Tag::where('Label', 'ilike', '%' . $term . '%')
+            ->limit(250);
+
+        $items = $items->get();
+
+        $result = array(
+            'success' => true,
+            'items' => $items,
+        );
+
+       return response()->json($result);
+
+    }
+
 }
