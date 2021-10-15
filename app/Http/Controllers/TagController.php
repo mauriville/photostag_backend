@@ -18,7 +18,7 @@ class TagController extends Controller
         return Datatables::of($item)
             ->addIndexColumn()
             ->addColumn('action', function ($p) {
-                return '<a class="btn btn-info btn-xs btn-datatable-Tag" id="' . $p->id . '"><i class="fa fa-bars"></i> ' . 'Detalles' . '</a> &nbsp;';
+                return '<button class="btn btn-info btn-xs btn-datatable-Tag" id="' . $p->id . '"><i class="fa fa-bars"></i> ' . 'Detalles' . '</button> &nbsp;';
             })
             ->editColumn('id', '{{$id}}')
             ->make(true);

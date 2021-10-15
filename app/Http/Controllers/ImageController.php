@@ -13,12 +13,12 @@ class ImageController extends Controller
     //
     public function index()
     {
-        $item = Image::select('id', 'Image', 'ImageUrl', 'ThumbnailUrl')->whereNull('deleted_at');
+        $item = Image::select('id', 'Title', 'ImageUrl', 'ThumbnailUrl')->whereNull('deleted_at');
 
         return Datatables::of($item)
             ->addIndexColumn()
             ->addColumn('action', function ($p) {
-                return '<a class="btn btn-info btn-xs btn-datatable-Image" id="' . $p->id . '"><i class="fa fa-bars"></i> ' . 'Detalles' . '</a> &nbsp;';
+                return '<button class="btn btn-info btn-xs btn-datatable-Image" id="' . $p->id . '"><i class="fa fa-bars"></i> ' . 'Detalles' . '</button> &nbsp;';
             })
             ->editColumn('id', '{{$id}}')
             ->make(true);
