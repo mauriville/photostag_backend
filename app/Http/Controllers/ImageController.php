@@ -41,22 +41,13 @@ class ImageController extends Controller
 
     public function show(Request $request)
     {
-        try {
-            $item = Image::findOrFail($request->id);
-            $data = array(
-                'success' => true,
-                'data' => $item,
-                'msg' => trans('messages.listed')
-            );
-        } catch (\Exception $e) {
-            $data = array(
-                'success' => false,
-                'data' => null,
-                'msg' => trans('mesagges.error')
-            );
-        } finally {
-            return response()->json($data);
-        }
+        $item = Image::where('id',$request->id)->with('Tag')->first();
+        $data = array(
+            'success' => true,
+            'data' => $item,
+            'msg' => trans('messages.listed')
+        );
+        return response()->json($data);
     }
 
     public function store(ImageRequest $request)

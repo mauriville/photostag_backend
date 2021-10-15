@@ -9,6 +9,8 @@ class TagImage extends Model
 {
     use HasFactory;
     protected $table = 'TagImage';
+    public $incrementing = false;
+    protected $primaryKey = null;
 
     public function tag()
     {

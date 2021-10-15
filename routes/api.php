@@ -62,6 +62,7 @@ Route::group(['prefix' => 'Tag', 'middleware' => 'guest'], function () {
     Route::post('/destroy', [TagController::class, 'destroy'])->name('Tag.destroy');
     Route::post('/store', [TagController::class, 'store'])->name('Tag.store');
     Route::get('/show', [TagController::class, 'show'])->name('Tag.show');
+    Route::get('/select2', [TagController::class, 'select2'])->name('Tag.select2');
 });
 
 /****************************************** TagImage *********************************/
@@ -70,5 +71,4 @@ Route::group(['prefix' => 'TagImage', 'middleware' => 'guest'], function () {
     Route::post('/destroy', [TagImageController::class, 'destroy'])->name('TagImage.destroy');
     Route::post('/store', [TagImageController::class, 'store'])->name('TagImage.store');
     Route::get('/show', [TagImageController::class, 'show'])->name('TagImage.show');
-    Route::get('/select2', [TagImageController::class, 'select2'])->name('TagImage.select2');
 });

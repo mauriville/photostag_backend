@@ -45,12 +45,14 @@ class TagImageController extends Controller
         if (!isset($item)) {
 
             $item = new TagImage();
-            $msg = trans('messages.added');
             $item->Tag = $request->Tag;
             $item->Image = $request->Image;
 
-            $item->save();
+        }else{
+            $item->deleted_at=null;
         }
+        $msg = trans('messages.added');
+        $item->save();
 
         $result = array(
             'success' => true,
@@ -62,7 +64,9 @@ class TagImageController extends Controller
 
     public function destroy(Request $request)
     {
-        $item = TagImage::where('id', $request->id)->first();
+        $item = TagImage::where('Tag',$request->Tag)
+            ->where('Image',$request->Image)
+            ->first();
         $item->deleted_at = Carbon::now();
         $item->save();
         $result = array(
